@@ -3,7 +3,9 @@
   "license": "MPL-2.0",
   "scripts": {
     "build": "yarn workspaces run build",
-    "start": "yarn workspace @web-speed-hackathon-2021/server start"
+    "start": "yarn workspace @web-speed-hackathon-2021/server start",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
+    "prepare": "git config --local core.hooksPath .githooks"
   },
   "workspaces": [
     "client",
@@ -11,5 +13,20 @@
   ],
   "engines": {
     "node": "16.x.x"
+  },
+  "prettier": {
+    "singleQuote": false,
+    "printWidth": 120,
+    "tabWidth": 4,
+    "trailingComma": "none"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,css}": [
+      "prettier --write"
+    ]
+  },
+  "devDependencies": {
+    "lint-staged": "^12.1.2",
+    "prettier": "^2.5.1"
   }
 }
