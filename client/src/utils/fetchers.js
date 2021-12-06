@@ -5,14 +5,7 @@ import { gzip } from "pako";
  * @returns {Promise<ArrayBuffer>}
  */
 async function fetchBinary(url) {
-    const result = await $.ajax({
-        async: true,
-        dataType: "binary",
-        method: "GET",
-        responseType: "arraybuffer",
-        url
-    });
-    return result;
+    return fetch(url).then((res) => res.arrayBuffer());
 }
 
 /**

@@ -16,7 +16,6 @@ import { fetchBinary } from "../../../utils/fetchers";
  * @type {React.VFC<Props>}
  */
 const CoveredImage = ({ alt, src }) => {
-    console.log({ alt, src });
     const { data, isLoading } = useFetch(src, fetchBinary);
 
     const imageSize = React.useMemo(() => {
