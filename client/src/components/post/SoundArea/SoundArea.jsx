@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import { SoundPlayer } from '../../foundation/SoundPlayer';
+import { SoundPlayer } from "../../foundation/SoundPlayer";
 
 /**
  * @typedef {object} Props
@@ -9,11 +9,11 @@ import { SoundPlayer } from '../../foundation/SoundPlayer';
 
 /** @type {React.VFC<Props>} */
 const SoundArea = ({ sound }) => {
-  return (
-    <div className="relative w-full h-full border border-gray-300 rounded-lg overflow-hidden">
-      <SoundPlayer sound={sound} />
-    </div>
-  );
+    return (
+        <div className="relative w-full h-full border border-gray-300 rounded-lg overflow-hidden">
+            <SoundPlayer sound={sound} />
+        </div>
+    );
 };
 
 export { SoundArea };

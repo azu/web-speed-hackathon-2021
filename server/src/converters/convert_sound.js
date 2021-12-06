@@ -1,4 +1,4 @@
-import { ffmpeg } from '../ffmpeg';
+import { ffmpeg } from "../ffmpeg";
 
 /**
  * @param {Buffer} buffer
@@ -7,17 +7,17 @@ import { ffmpeg } from '../ffmpeg';
  * @returns {Promise<Uint8Array>}
  */
 async function convertSound(buffer, options) {
-  const exportFile = `export.${options.extension ?? 'mp3'}`;
+    const exportFile = `export.${options.extension ?? "mp3"}`;
 
-  if (ffmpeg.isLoaded() === false) {
-    await ffmpeg.load();
-  }
+    if (ffmpeg.isLoaded() === false) {
+        await ffmpeg.load();
+    }
 
-  ffmpeg.FS('writeFile', 'file', new Uint8Array(buffer));
+    ffmpeg.FS("writeFile", "file", new Uint8Array(buffer));
 
-  await ffmpeg.run(...['-i', 'file', '-vn', exportFile]);
+    await ffmpeg.run(...["-i", "file", "-vn", exportFile]);
 
-  return ffmpeg.FS('readFile', exportFile);
+    return ffmpeg.FS("readFile", exportFile);
 }
 
 export { convertSound };

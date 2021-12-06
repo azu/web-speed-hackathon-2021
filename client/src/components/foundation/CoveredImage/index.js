@@ -1,1 +1,1 @@
-export { CoveredImage } from './CoveredImage';
+export { CoveredImage } from "./CoveredImage";

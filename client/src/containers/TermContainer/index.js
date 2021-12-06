@@ -1,1 +1,1 @@
-export { TermContainer } from './TermContainer';
+export { TermContainer } from "./TermContainer";

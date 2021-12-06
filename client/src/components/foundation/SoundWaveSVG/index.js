@@ -1,1 +1,1 @@
-export { SoundWaveSVG } from './SoundWaveSVG';
+export { SoundWaveSVG } from "./SoundWaveSVG";

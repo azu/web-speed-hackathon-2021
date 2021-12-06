@@ -1,4 +1,4 @@
-import sharp from 'sharp';
+import sharp from "sharp";
 
 /**
  * @param {Buffer} buffer
@@ -9,14 +9,14 @@ import sharp from 'sharp';
  * @returns {Promise<Uint8Array>}
  */
 async function convertImage(buffer, options) {
-  return sharp(buffer)
-    .resize({
-      fit: 'cover',
-      height: options.height,
-      width: options.width,
-    })
-    .toFormat(options.extension ?? 'jpeg')
-    .toBuffer();
+    return sharp(buffer)
+        .resize({
+            fit: "cover",
+            height: options.height,
+            width: options.width
+        })
+        .toFormat(options.extension ?? "jpeg")
+        .toBuffer();
 }
 
 export { convertImage };

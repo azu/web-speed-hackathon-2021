@@ -1,1 +1,1 @@
-export { SoundArea } from './SoundArea';
+export { SoundArea } from "./SoundArea";

@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import { TimelineItem } from '../TimelineItem';
+import { TimelineItem } from "../TimelineItem";
 
 /**
  * @typedef {object} Props
@@ -9,13 +9,13 @@ import { TimelineItem } from '../TimelineItem';
 
 /** @type {React.VFC<Props>} */
 const Timeline = ({ timeline }) => {
-  return (
-    <section>
-      {timeline.map((post) => {
-        return <TimelineItem key={post.id} post={post} />;
-      })}
-    </section>
-  );
+    return (
+        <section>
+            {timeline.map((post) => {
+                return <TimelineItem key={post.id} post={post} />;
+            })}
+        </section>
+    );
 };
 
 export { Timeline };

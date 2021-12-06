@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import { Timeline } from '../Timeline';
+import { Timeline } from "../Timeline";
 
 /**
  * @typedef {object} Props
@@ -9,7 +9,7 @@ import { Timeline } from '../Timeline';
 
 /** @type {React.VFC<Props>} */
 const TimelinePage = ({ timeline }) => {
-  return <Timeline timeline={timeline} />;
+    return <Timeline timeline={timeline} />;
 };
 
 export { TimelinePage };

@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
-import { Timeline } from '../../timeline/Timeline';
-import { UserProfileHeader } from '../UserProfileHeader';
+import { Timeline } from "../../timeline/Timeline";
+import { UserProfileHeader } from "../UserProfileHeader";
 
 /**
  * @typedef {object} Props
@@ -11,14 +11,14 @@ import { UserProfileHeader } from '../UserProfileHeader';
 
 /** @type {React.VFC<Props>} */
 const UserProfilePage = ({ timeline, user }) => {
-  return (
-    <>
-      <UserProfileHeader user={user} />
-      <div className="mt-6 border-t border-gray-300">
-        <Timeline timeline={timeline} />
-      </div>
-    </>
-  );
+    return (
+        <>
+            <UserProfileHeader user={user} />
+            <div className="mt-6 border-t border-gray-300">
+                <Timeline timeline={timeline} />
+            </div>
+        </>
+    );
 };
 
 export { UserProfilePage };

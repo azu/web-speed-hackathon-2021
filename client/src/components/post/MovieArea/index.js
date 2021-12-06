@@ -1,1 +1,1 @@
-export { MovieArea } from './MovieArea';
+export { MovieArea } from "./MovieArea";

@@ -1,1 +1,1 @@
-export { NewPostModalPage } from './NewPostModalPage';
+export { NewPostModalPage } from "./NewPostModalPage";

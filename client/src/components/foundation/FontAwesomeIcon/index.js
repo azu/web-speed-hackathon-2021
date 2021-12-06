@@ -1,1 +1,1 @@
-export { FontAwesomeIcon } from './FontAwesomeIcon';
+export { FontAwesomeIcon } from "./FontAwesomeIcon";

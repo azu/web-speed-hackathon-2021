@@ -1,1 +1,1 @@
-export { ImageArea } from './ImageArea';
+export { ImageArea } from "./ImageArea";

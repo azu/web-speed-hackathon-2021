@@ -1,6 +1,6 @@
-import { DataTypes, Sequelize } from 'sequelize';
+import { DataTypes, Sequelize } from "sequelize";
 
-import { sequelize } from '../sequelize';
+import { sequelize } from "../sequelize";
 
 /**
  * @typedef {object} SoundAttributes
@@ -14,23 +14,23 @@ import { sequelize } from '../sequelize';
  */
 
 /** @type {import('sequelize').ModelCtor<SoundModel>} */
-const Sound = sequelize.define('Sound', {
-  artist: {
-    allowNull: false,
-    defaultValue: 'Unknown',
-    type: DataTypes.STRING,
-  },
-  id: {
-    allowNull: false,
-    defaultValue: Sequelize.UUIDV4,
-    primaryKey: true,
-    type: DataTypes.UUID,
-  },
-  title: {
-    allowNull: false,
-    defaultValue: 'Unknown',
-    type: DataTypes.STRING,
-  },
+const Sound = sequelize.define("Sound", {
+    artist: {
+        allowNull: false,
+        defaultValue: "Unknown",
+        type: DataTypes.STRING
+    },
+    id: {
+        allowNull: false,
+        defaultValue: Sequelize.UUIDV4,
+        primaryKey: true,
+        type: DataTypes.UUID
+    },
+    title: {
+        allowNull: false,
+        defaultValue: "Unknown",
+        type: DataTypes.STRING
+    }
 });
 
 export { Sound };

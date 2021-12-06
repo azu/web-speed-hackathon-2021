@@ -1,1 +1,1 @@
-export { PausableMovie } from './PausableMovie';
+export { PausableMovie } from "./PausableMovie";

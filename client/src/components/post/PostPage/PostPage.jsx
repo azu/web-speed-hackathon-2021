@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
-import { CommentList } from '../CommentList';
-import { PostItem } from '../PostItem';
+import { CommentList } from "../CommentList";
+import { PostItem } from "../PostItem";
 
 /**
  * @typedef {object} Props
@@ -11,12 +11,12 @@ import { PostItem } from '../PostItem';
 
 /** @type {React.VFC<Props>} */
 const PostPage = ({ comments, post }) => {
-  return (
-    <>
-      <PostItem post={post} />
-      <CommentList comments={comments} />
-    </>
-  );
+    return (
+        <>
+            <PostItem post={post} />
+            <CommentList comments={comments} />
+        </>
+    );
 };
 
 export { PostPage };
