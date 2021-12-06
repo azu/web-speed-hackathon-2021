@@ -4,8 +4,7 @@
   "scripts": {
     "build": "yarn workspaces run build",
     "start": "yarn workspace @web-speed-hackathon-2021/server start",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
-    "prepare": "git config --local core.hooksPath .githooks"
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\""
   },
   "workspaces": [
     "client",
