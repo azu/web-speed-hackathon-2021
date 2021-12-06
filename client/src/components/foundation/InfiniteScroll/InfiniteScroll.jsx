@@ -1,5 +1,21 @@
 import React from "react";
 
+function debounce(func, wait, immediate) {
+    var timeout;
+    return function () {
+        var context = this,
+            args = arguments;
+        var later = function () {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+    };
+}
+
 /**
  * @typedef {object} Props
  * @property {React.ReactNode} children
@@ -14,18 +30,22 @@ const InfiniteScroll = ({ children, fetchMore, items }) => {
     const prevReachedRef = React.useRef(false);
 
     React.useEffect(() => {
-        const handler = () => {
-            const hasReached = window.innerHeight + Math.ceil(window.scrollY) >= document.body.offsetHeight;
-            // 画面最下部にスクロールしたタイミングで、登録したハンドラを呼び出す
-            if (hasReached && !prevReachedRef.current) {
-                // アイテムがないときは追加で読み込まない
-                if (latestItem !== undefined) {
-                    fetchMore();
+        const handler = debounce(
+            () => {
+                const hasReached = window.innerHeight + Math.ceil(window.scrollY) >= document.body.offsetHeight;
+                // 画面最下部にスクロールしたタイミングで、登録したハンドラを呼び出す
+                if (hasReached && !prevReachedRef.current) {
+                    // アイテムがないときは追加で読み込まない
+                    if (latestItem !== undefined) {
+                        fetchMore();
+                    }
                 }
-            }
 
-            prevReachedRef.current = hasReached;
-        };
+                prevReachedRef.current = hasReached;
+            },
+            300,
+            true
+        );
 
         // 最初は実行されないので手動で呼び出す
         prevReachedRef.current = false;
