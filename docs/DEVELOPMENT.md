@@ -33,7 +33,7 @@
 - **webpack dev server**
 
   ```bash
-  # サーバーを起動した状態で次を実行する
+  # サーバーを起動した状態で次を実行する 
   yarn workspace @web-speed-hackathon-2021/client develop
   ```
 
