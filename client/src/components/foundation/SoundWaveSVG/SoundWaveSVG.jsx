@@ -50,9 +50,12 @@ async function calculate(data) {
  */
 const SoundWaveSVG = ({ soundData }) => {
     const uniqueIdRef = React.useRef(Math.random().toString(16));
-    const [{ max, peaks }, setPeaks] = React.useState({ max: 0, peaks: [] });
+    const [data, setPeaks] = React.useState({ max: 0, peaks: [] });
 
     React.useEffect(() => {
+        if (data.peaks.length > 0) {
+            return;
+        }
         calculate(soundData).then(({ max, peaks }) => {
             setPeaks({ max, peaks });
         });
@@ -60,8 +63,8 @@ const SoundWaveSVG = ({ soundData }) => {
 
     return (
         <svg className="w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 1">
-            {peaks.map((peak, idx) => {
-                const ratio = peak / max;
+            {data.peaks.map((peak, idx) => {
+                const ratio = peak / data.max;
                 return (
                     <rect
                         key={`${uniqueIdRef.current}#${idx}`}
