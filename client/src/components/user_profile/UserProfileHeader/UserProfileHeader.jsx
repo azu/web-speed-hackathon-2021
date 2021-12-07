@@ -1,6 +1,6 @@
 import FastAverageColor from "fast-average-color";
 import React from "react";
-
+import moment from "moment";
 import { getProfileImagePath } from "../../../utils/get_path";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
