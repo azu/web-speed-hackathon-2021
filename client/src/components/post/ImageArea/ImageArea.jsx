@@ -4,6 +4,7 @@ import React from "react";
 import { getImagePath } from "../../../utils/get_path";
 import { AspectRatioBox } from "../../foundation/AspectRatioBox";
 import { CoveredImage } from "../../foundation/CoveredImage";
+import { InView } from "react-intersection-observer";
 
 /**
  * @typedef {object} Props
@@ -17,7 +18,8 @@ const ImageArea = ({ images }) => {
             <div className="grid gap-1 grid-cols-2 grid-rows-2 w-full h-full border border-gray-300 rounded-lg overflow-hidden">
                 {images.map((image, idx) => {
                     return (
-                        <div
+                        <InView
+                            as={"div"}
                             key={image.id}
                             // CSS Grid で表示領域を指定する
                             className={classNames("bg-gray-300", {
@@ -28,7 +30,7 @@ const ImageArea = ({ images }) => {
                             })}
                         >
                             <CoveredImage alt={image.alt} src={getImagePath(image.id)} />
-                        </div>
+                        </InView>
                     );
                 })}
             </div>
