@@ -44,6 +44,7 @@ const PausableMovie = ({ src }) => {
                     autoPlay={true}
                     playsInline={true}
                     src={src}
+                    loop={true}
                     className="w-full"
                     height={1080}
                 />
