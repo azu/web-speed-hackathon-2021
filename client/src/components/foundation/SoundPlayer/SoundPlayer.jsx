@@ -5,8 +5,8 @@ import { fetchBinary } from "../../../utils/fetchers";
 import { getSoundPath } from "../../../utils/get_path";
 import { AspectRatioBox } from "../AspectRatioBox";
 import { SoundWaveSVG } from "../SoundWaveSVG";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPause, faPlay } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPause, faPlay } from "@fortawesome/free-solid-svg-icons";
 
 import { useInView } from "react-intersection-observer";
 /**
@@ -23,14 +23,19 @@ const SoundPlayer = ({ sound }) => {
     });
     const soundPath = getSoundPath(sound.id);
     const [soundData, setSoundData] = useState();
+    const [fetchState, setFetchState] = useState("none");
     useEffect(() => {
-        if (soundData) {
+        if (fetchState !== "none") {
             return;
         }
+        setFetchState("isFetching");
         fetch(soundPath)
             .then((res) => res.arrayBuffer())
             .then((buffer) => {
                 setSoundData(buffer);
+            })
+            .finally(() => {
+                setFetchState("fetched");
             });
     }, [inView, soundData]);
     const [currentTimeRatio, setCurrentTimeRatio] = React.useState(0);
@@ -64,7 +69,17 @@ const SoundPlayer = ({ sound }) => {
                     onClick={handleTogglePlaying}
                     type="button"
                 >
-                    {isPlaying ? <FontAwesomeIcon className="font-awesome inline-block leading-none fill-current" icon={faPause}/> : <FontAwesomeIcon className="font-awesome inline-block leading-none fill-current" icon={faPlay}/>}
+                    {isPlaying ? (
+                        <FontAwesomeIcon
+                            className="font-awesome inline-block leading-none fill-current"
+                            icon={faPause}
+                        />
+                    ) : (
+                        <FontAwesomeIcon
+                            className="font-awesome inline-block leading-none fill-current"
+                            icon={faPlay}
+                        />
+                    )}
                 </button>
             </div>
             <div className="flex flex-col flex-grow flex-shrink pt-2 min-w-0 h-full">
