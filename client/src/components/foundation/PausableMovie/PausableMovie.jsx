@@ -23,6 +23,7 @@ const PausableMovie = ({ src }) => {
      */
     const animatorRef = useRef();
     const autoplay = useMemo(() => {
+        // `prefers-reduced-motion: reduce` が有効のとき、動画を自動再生しないようにしました
         return !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     }, []);
     const [isPlaying, setIsPlaying] = React.useState(autoplay);

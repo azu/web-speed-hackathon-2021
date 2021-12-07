@@ -54,7 +54,9 @@ const SoundPlayer = ({ sound }) => {
     }, []);
     return (
         <div className="flex items-center justify-center w-full h-full bg-gray-300" ref={ref}>
-            {inView && <audio ref={audioRef} loop={true} onTimeUpdate={handleTimeUpdate} src={soundPath} />}
+            {inView && (
+                <audio ref={audioRef} loop={true} onTimeUpdate={handleTimeUpdate} src={soundPath} preload={"none"} />
+            )}
             <div className="p-2">
                 <button
                     className="flex items-center justify-center w-8 h-8 text-white text-sm bg-blue-600 rounded-full hover:opacity-75"
