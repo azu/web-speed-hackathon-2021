@@ -41,7 +41,7 @@ const PausableMovie = ({ src }) => {
                     ref={animatorRef}
                     muted={true}
                     controls={false}
-                    autoPlay={true}
+                    autoPlay={isPlaying}
                     playsInline={true}
                     src={src}
                     loop={true}
