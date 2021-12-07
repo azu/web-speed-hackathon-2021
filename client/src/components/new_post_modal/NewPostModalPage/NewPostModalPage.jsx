@@ -1,6 +1,7 @@
 import React from "react";
 
-import { FontAwesomeIcon } from "../../foundation/FontAwesomeIcon";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faImage, faMusic, faVideo } from '@fortawesome/free-solid-svg-icons'
 import { ModalErrorMessage } from "../../modal/ModalErrorMessage";
 import { ModalSubmitButton } from "../../modal/ModalSubmitButton";
 import { AttachFileInputButton } from "../AttachFileInputButton";
@@ -27,9 +28,9 @@ const MAX_UPLOAD_BYTES_LIMIT = 10 * 1024 * 1024;
 const NewPostModalPage = ({ hasError, isLoading, onResetError, onSubmit }) => {
     /** @type {[SubmitParams, (params: SubmitParams) => SubmitParams]} */
     const [params, setParams] = React.useState({ images: [], movie: undefined, sound: undefined, text: "" });
-
+    
     const [hasFileError, setHasFileError] = React.useState(false);
-
+    
     /** @type {React.ChangeEventHandler<HTMLInputElement>} */
     const handleChangeText = React.useCallback((ev) => {
         const value = ev.currentTarget.value;
@@ -38,12 +39,12 @@ const NewPostModalPage = ({ hasError, isLoading, onResetError, onSubmit }) => {
             text: value
         }));
     }, []);
-
+    
     /** @type {React.ChangeEventHandler<HTMLInputElement>} */
     const handleChangeImages = React.useCallback((ev) => {
         const files = Array.from(ev.currentTarget.files).slice(0, 4);
         const isValid = files.every((file) => file.size <= MAX_UPLOAD_BYTES_LIMIT);
-
+        
         setHasFileError(isValid !== true);
         if (isValid) {
             setParams((params) => ({
@@ -54,12 +55,12 @@ const NewPostModalPage = ({ hasError, isLoading, onResetError, onSubmit }) => {
             }));
         }
     }, []);
-
+    
     /** @type {React.ChangeEventHandler<HTMLInputElement>} */
     const handleChangeSound = React.useCallback((ev) => {
         const file = ev.currentTarget.files[0];
         const isValid = file?.size <= MAX_UPLOAD_BYTES_LIMIT;
-
+        
         setHasFileError(isValid !== true);
         if (isValid) {
             setParams((params) => ({
@@ -70,12 +71,12 @@ const NewPostModalPage = ({ hasError, isLoading, onResetError, onSubmit }) => {
             }));
         }
     }, []);
-
+    
     /** @type {React.ChangeEventHandler<HTMLInputElement>} */
     const handleChangeMovie = React.useCallback((ev) => {
         const file = ev.currentTarget.files[0];
         const isValid = file?.size <= MAX_UPLOAD_BYTES_LIMIT;
-
+        
         setHasFileError(isValid !== true);
         if (isValid) {
             setParams((params) => ({
@@ -86,7 +87,7 @@ const NewPostModalPage = ({ hasError, isLoading, onResetError, onSubmit }) => {
             }));
         }
     }, []);
-
+    
     /** @type {React.FormEventHandler<HTMLFormElement>} */
     const handleSubmit = React.useCallback(
         (ev) => {
@@ -96,7 +97,7 @@ const NewPostModalPage = ({ hasError, isLoading, onResetError, onSubmit }) => {
         },
         [params, onSubmit, onResetError]
     );
-
+    
     return (
         <section>
             <form className="flex flex-col items-center w-full" onSubmit={handleSubmit}>
@@ -109,19 +110,22 @@ const NewPostModalPage = ({ hasError, isLoading, onResetError, onSubmit }) => {
                     <AttachFileInputButton
                         accept="image/*"
                         active={params.images.length !== 0}
-                        icon={<FontAwesomeIcon iconType="images" styleType="solid" />}
+                        icon={<FontAwesomeIcon className="font-awesome inline-block leading-none fill-current"
+                                               icon={faImage}/>}
                         onChange={handleChangeImages}
                     />
                     <AttachFileInputButton
                         accept="audio/*"
                         active={params.sound !== undefined}
-                        icon={<FontAwesomeIcon iconType="music" styleType="solid" />}
+                        icon={<FontAwesomeIcon className="font-awesome inline-block leading-none fill-current"
+                                               icon={faMusic}/>}
                         onChange={handleChangeSound}
                     />
                     <AttachFileInputButton
                         accept="video/*"
                         active={params.movie !== undefined}
-                        icon={<FontAwesomeIcon iconType="video" styleType="solid" />}
+                        icon={<FontAwesomeIcon className="font-awesome inline-block leading-none fill-current"
+                                               icon={faVideo}/>}
                         onChange={handleChangeMovie}
                     />
                 </p>

@@ -4,8 +4,9 @@ import { useFetch } from "../../../hooks/use_fetch";
 import { fetchBinary } from "../../../utils/fetchers";
 import { getSoundPath } from "../../../utils/get_path";
 import { AspectRatioBox } from "../AspectRatioBox";
-import { FontAwesomeIcon } from "../FontAwesomeIcon";
 import { SoundWaveSVG } from "../SoundWaveSVG";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPause, faPlay } from '@fortawesome/free-solid-svg-icons'
 
 import { useInView } from "react-intersection-observer";
 /**
@@ -63,7 +64,7 @@ const SoundPlayer = ({ sound }) => {
                     onClick={handleTogglePlaying}
                     type="button"
                 >
-                    <FontAwesomeIcon iconType={isPlaying ? "pause" : "play"} styleType="solid" />
+                    {isPlaying ? <FontAwesomeIcon className="font-awesome inline-block leading-none fill-current" icon={faPause}/> : <FontAwesomeIcon className="font-awesome inline-block leading-none fill-current" icon={faPlay}/>}
                 </button>
             </div>
             <div className="flex flex-col flex-grow flex-shrink pt-2 min-w-0 h-full">

@@ -1,9 +1,9 @@
 import FastAverageColor from "fast-average-color";
-import moment from "moment";
 import React from "react";
 
 import { getProfileImagePath } from "../../../utils/get_path";
-import { FontAwesomeIcon } from "../../foundation/FontAwesomeIcon";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
 
 /**
  * @typedef {object} Props
@@ -40,7 +40,7 @@ const UserProfileHeader = ({ user }) => {
                 <p className="pt-2">{user.description}</p>
                 <p className="pt-2 text-gray-600 text-sm">
                     <span className="pr-1">
-                        <FontAwesomeIcon iconType="calendar-alt" styleType="regular" />
+                        <FontAwesomeIcon className="font-awesome inline-block leading-none fill-current" icon={faCalendarAlt}" />
                     </span>
                     <span>
                         <time dateTime={moment(user.createdAt).toISOString()}>
