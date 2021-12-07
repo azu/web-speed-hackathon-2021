@@ -31,14 +31,14 @@ async function convertMovie(buffer, options = {}) {
     }
     
     ffmpeg.FS("writeFile", "file", new Uint8Array(buffer));
-    
-    await ffmpeg.run(...["-i", "file", "-t", "5", "-r", "10", "-vf", `crop=${cropOptions}`, "-an", exportFile]);
+    await ffmpeg.run(...["-i", "file", "-movflags", "faststart", "-pix_fmt", "yuv420p", "-vf", `scale=trunc(iw/2)*2:trunc(ih/2)*2`, exportFile]);
     return ffmpeg.FS("readFile", exportFile);
 }
 
 const images = await globby(join(__dirname, "../../../public/movies") + "**/*.gif")
 for (const image of images) {
+    console.log(image)
     await convertMovie(await fs.readFile(image)).then(async resizeBuffer => {
-        await fs.writeFile(image, resizeBuffer);
+        await fs.writeFile(image.replace(/gif$/, "mp4"), resizeBuffer);
     })
 }
