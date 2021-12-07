@@ -2,7 +2,8 @@
   "private": true,
   "license": "MPL-2.0",
   "scripts": {
-    "build": "yarn workspaces run build",
+    "build": "yarn workspaces run build && yarn run compress",
+    "compress": "sh post.sh",
     "start": "yarn workspace @web-speed-hackathon-2021/server start",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\""
   },

@@ -1,7 +1,6 @@
 import history from "connect-history-api-fallback";
 import Router from "express-promise-router";
-import serveStatic from "serve-static";
-
+import expressStaticGzip from "express-static-gzip";
 import { CLIENT_DIST_PATH, PUBLIC_PATH, UPLOAD_PATH } from "../paths";
 
 const router = Router();
@@ -10,23 +9,39 @@ const router = Router();
 router.use(history());
 
 router.use(
-    serveStatic(UPLOAD_PATH, {
-        etag: false,
-        lastModified: false
+    expressStaticGzip(UPLOAD_PATH, {
+        enableBrotli: true,
+        serveStatic: {
+            etag: true,
+            lastModified: true,
+            immutable: true,
+            maxAge: 36 * 1000 * 10
+        }
     })
 );
 
 router.use(
-    serveStatic(PUBLIC_PATH, {
-        etag: false,
-        lastModified: false
+    expressStaticGzip(PUBLIC_PATH, {
+        enableBrotli: true,
+        serveStatic: {
+            etag: true,
+            lastModified: true,
+            immutable: true,
+            maxAge: 36 * 1000 * 10,
+            cacheControl: false
+        }
     })
 );
 
 router.use(
-    serveStatic(CLIENT_DIST_PATH, {
-        etag: false,
-        lastModified: false
+    expressStaticGzip(CLIENT_DIST_PATH, {
+        enableBrotli: true,
+        serveStatic: {
+            etag: true,
+            lastModified: true,
+            immutable: true,
+            maxAge: 36 * 1000 * 10
+        }
     })
 );
 
