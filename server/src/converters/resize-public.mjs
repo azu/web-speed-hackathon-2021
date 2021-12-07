@@ -29,7 +29,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const images = await globby(join(__dirname, "../../../public/images") +"**/*.jpg")
 const all = images.map(async image => {
     return convertImage(await fs.readFile(image), {
-        width: 1280
+        height: 1080
     }).then(async resizeBuffer => {
         await fs.writeFile(image, resizeBuffer);
     })
