@@ -20,6 +20,9 @@ const CommentItem = ({ comment }) => {
                         to={`/users/${comment.user.username}`}
                     >
                         <img
+                            width="62"
+                            height="62"
+                            loading={"lazy"}
                             alt={comment.user.profileImage.alt}
                             src={getProfileImagePath(comment.user.profileImage.id)}
                         />

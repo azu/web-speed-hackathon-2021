@@ -24,6 +24,9 @@ const PostItem = ({ post }) => {
                             to={`/users/${post.user.username}`}
                         >
                             <img
+                                width="62"
+                                height="62"
+                                loading={"lazy"}
                                 alt={post.user.profileImage.alt}
                                 src={getProfileImagePath(post.user.profileImage.id)}
                             />
