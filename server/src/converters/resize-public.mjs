@@ -37,8 +37,8 @@ await Promise.all(uploadImages.map(async image => {
 const profileImages = await globby([join(__dirname, "../../../public/images") + "**/profiles/*.jpg"])
 await Promise.all(profileImages.map(async image => {
     return convertImage(await fs.readFile(image), {
-        width: 46,
-        height: 46
+        width: 128,
+        height: 128 // 46 or 128
     }).then(async resizeBuffer => {
         await fs.writeFile(image.replace(".jpg", ".webp"), resizeBuffer);
     })

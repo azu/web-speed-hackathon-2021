@@ -29,6 +29,8 @@ const UserProfileHeader = ({ user }) => {
             <div className="absolute left-2/4 m-0 w-28 h-28 bg-gray-300 border border-gray-300 rounded-full overflow-hidden transform -translate-x-1/2 -translate-y-1/2 sm:w-32 sm:h-32">
                 <img
                     alt=""
+                    width={128}
+                    height={128}
                     crossOrigin="anonymous"
                     onLoad={handleLoadImage}
                     src={getProfileImagePath(user.profileImage.id)}
