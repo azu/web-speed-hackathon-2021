@@ -7,7 +7,9 @@
   "scripts": {
     "build": "echo noop",
     "prestart": "npm-run-all prestart:clean prestart:init",
-    "start": "babel-node --experimental-wasm-threads src/index.js",
+    "predev": "npm run prestart",
+    "dev": "NODE_ENV=develop babel-node --experimental-wasm-threads src/index.js",
+    "start": "NODE_ENV=production babel-node --experimental-wasm-threads src/index.js",
     "prestart:clean": "rimraf ../upload",
     "prestart:init": "mkdirp ../upload/images ../upload/movies ../upload/sounds"
   },
