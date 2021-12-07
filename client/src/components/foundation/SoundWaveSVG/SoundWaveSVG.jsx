@@ -7,25 +7,35 @@ import React from "react";
  */
 async function calculate(data) {
     const audioCtx = new AudioContext();
-
+    // console.time('calculate');
     // 音声をデコードする
     /** @type {AudioBuffer} */
     const buffer = await new Promise((resolve, reject) => {
         audioCtx.decodeAudioData(data.slice(0), resolve, reject);
     });
+    // console.timeLog("calculate", "buffer")
     // 左の音声データの絶対値を取る
     const leftData = _.map(buffer.getChannelData(0), Math.abs);
+    // console.timeLog("calculate", "leftData")
     // 右の音声データの絶対値を取る
     const rightData = _.map(buffer.getChannelData(1), Math.abs);
 
+    // console.timeLog("calculate", "rightData")
     // 左右の音声データの平均を取る
-    const normalized = _.map(_.zip(leftData, rightData), _.mean);
+    const normalized = leftData.map((l, i) => {
+        return (l + rightData[i]) / 2;
+    });
+    // console.timeLog("calculate", "normalize")
     // 100 個の chunk に分ける
     const chunks = _.chunk(normalized, Math.ceil(normalized.length / 100));
+    // console.timeLog("calculate", "chunks")
     // chunk ごとに平均を取る
     const peaks = _.map(chunks, _.mean);
+    // console.timeLog("calculate", "peak")
     // chunk の平均の中から最大値を取る
     const max = _.max(peaks);
+    // console.timeLog("calculate", "max")
+    // console.timeEnd("calculate")
 
     return { max, peaks };
 }

@@ -18,7 +18,7 @@ import { useInView } from "react-intersection-observer";
  */
 const SoundPlayer = ({ sound }) => {
     const { ref, inView } = useInView({
-        threshold: 0
+        threshold: 0.1
     });
     const soundPath = getSoundPath(sound.id);
     const [soundData, setSoundData] = useState();
@@ -54,7 +54,7 @@ const SoundPlayer = ({ sound }) => {
     }, []);
     return (
         <div className="flex items-center justify-center w-full h-full bg-gray-300" ref={ref}>
-            <audio ref={audioRef} loop={true} onTimeUpdate={handleTimeUpdate} src={soundPath} />
+            {inView && <audio ref={audioRef} loop={true} onTimeUpdate={handleTimeUpdate} src={soundPath} />}
             <div className="p-2">
                 <button
                     className="flex items-center justify-center w-8 h-8 text-white text-sm bg-blue-600 rounded-full hover:opacity-75"
