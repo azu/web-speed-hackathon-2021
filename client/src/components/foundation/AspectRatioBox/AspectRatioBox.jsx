@@ -22,7 +22,7 @@ const AspectRatioBox = ({ aspectHeight, aspectWidth, children }) => {
             const clientWidth = ref.current.clientWidth;
             setClientHeight((clientWidth / aspectWidth) * aspectHeight);
         }
-        setTimeout(() => calcStyle(), 500);
+        calcStyle(); // asap compute but it will be layout shift
 
         // ウィンドウサイズが変わるたびに計算する
         window.addEventListener("resize", calcStyle, { passive: true });
