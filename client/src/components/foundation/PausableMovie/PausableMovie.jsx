@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { Animator, Decoder } from "gifler";
 import { GifReader } from "omggif";
-import React, { useRef } from "react";
+import React, { useMemo, useRef } from "react";
 
 import { useFetch } from "../../../hooks/use_fetch";
 import { fetchBinary } from "../../../utils/fetchers";
@@ -22,7 +22,10 @@ const PausableMovie = ({ src }) => {
      * @type {React.MutableRefObject<HTMLVideoElement>}
      */
     const animatorRef = useRef();
-    const [isPlaying, setIsPlaying] = React.useState(true);
+    const autoplay = useMemo(() => {
+        return !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    }, []);
+    const [isPlaying, setIsPlaying] = React.useState(autoplay);
     const handleClick = React.useCallback(() => {
         setIsPlaying((isPlaying) => {
             if (isPlaying) {
@@ -41,8 +44,9 @@ const PausableMovie = ({ src }) => {
                     ref={animatorRef}
                     muted={true}
                     controls={false}
-                    autoPlay={isPlaying}
+                    autoPlay={autoplay}
                     playsInline={true}
+                    preload={"auto"}
                     src={src}
                     loop={true}
                     className="w-full"
