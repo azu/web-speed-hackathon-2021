@@ -21,17 +21,17 @@ async function convertImage(buffer, options) {
             width: options.width,
             withoutEnlargement: true
         })
-        .toFormat(options.extension ?? "jpeg")
+        .toFormat(options.extension ?? "webp")
         .toBuffer();
 }
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const images = await globby(join(__dirname, "../../../public/images") +"**/*.jpg")
+const images = await globby([join(__dirname, "../../../public/images") + "**/*.jpg", join(__dirname, "../../../public/images") + "**/profiles/*.jpg"])
 const all = images.map(async image => {
     return convertImage(await fs.readFile(image), {
         height: 1080
     }).then(async resizeBuffer => {
-        await fs.writeFile(image, resizeBuffer);
+        await fs.writeFile(image.replace(".jpg", ".webp"), resizeBuffer);
     })
 });
 await Promise.all(all);
