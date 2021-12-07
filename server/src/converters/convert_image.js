@@ -13,7 +13,8 @@ async function convertImage(buffer, options) {
         .resize({
             fit: "cover",
             height: options.height,
-            width: options.width
+            width: options.width,
+            withoutEnlargement: true
         })
         .toFormat(options.extension ?? "jpeg")
         .toBuffer();
