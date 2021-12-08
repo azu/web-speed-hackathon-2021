@@ -33,8 +33,7 @@ router.use(
                   etag: true,
                   lastModified: true,
                   immutable: true,
-                  maxAge: 3600 * 1000,
-                  cacheControl: false
+                  maxAge: 3600 * 1000
               }
           })
 );
@@ -48,8 +47,7 @@ router.use(
                   etag: true,
                   lastModified: true,
                   immutable: true,
-                  maxAge: 3600 * 1000,
-                  cacheControl: false
+                  maxAge: 3600 * 1000
               }
           })
 );
