@@ -3,20 +3,18 @@
   "name": "@web-speed-hackathon-2021/server",
   "version": "0.0.1",
   "license": "MPL-2.0",
-  "main": "src/index.js",
+  "main": "lib/index.js",
+  "type": "module",
   "scripts": {
     "build": "echo noop",
     "prestart": "npm-run-all prestart:clean prestart:init",
     "predev": "npm run prestart",
-    "dev": "NODE_ENV=develop babel-node --experimental-wasm-threads src/index.js",
-    "start": "NODE_ENV=production babel-node --experimental-wasm-threads src/index.js",
+    "dev": "NODE_ENV=develop node --experimental-wasm-threads --experimental-json-modules lib/index.js",
+    "start": "NODE_ENV=production node --experimental-wasm-threads --experimental-json-modules lib/index.js",
     "prestart:clean": "rimraf ../upload",
     "prestart:init": "mkdirp ../upload/images ../upload/movies ../upload/sounds"
   },
   "dependencies": {
-    "@babel/core": "7.16.0",
-    "@babel/node": "7.16.0",
-    "@babel/preset-env": "7.16.4",
     "@ffmpeg/core": "0.10.0",
     "@ffmpeg/ffmpeg": "0.10.1",
     "bcrypt": "5.0.1",
@@ -62,9 +60,6 @@
       "dev"
     ],
     "ignorePackages": [
-      "@babel/core",
-      "@babel/node",
-      "@babel/preset-env",
       "rimraf",
       "mkdirp",
       "npm-run-all"
