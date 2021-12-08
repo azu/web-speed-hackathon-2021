@@ -5,7 +5,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import { AppPage } from "../../components/application/AppPage";
 import { useFetch } from "../../hooks/use_fetch";
 import { fetchJSON } from "../../utils/fetchers";
-// Container
+// modal
 const AuthModalContainer = lazy(() =>
     import("../AuthModalContainer/AuthModalContainer").then(({ AuthModalContainer }) => ({
         default: AuthModalContainer
@@ -16,6 +16,7 @@ const NewPostModalContainer = lazy(() =>
         default: NewPostModalContainer
     }))
 );
+// container
 const NotFoundContainer = lazy(() =>
     import("../NotFoundContainer/NotFoundContainer").then(({ NotFoundContainer }) => ({ default: NotFoundContainer }))
 );
@@ -111,10 +112,15 @@ const AppContainer = () => {
                 </Routes>
             </AppPage>
 
-            {modalType === "auth" ? (
-                <AuthModalContainer onRequestCloseModal={handleRequestCloseModal} onUpdateActiveUser={setActiveUser} />
-            ) : null}
-            {modalType === "post" ? <NewPostModalContainer onRequestCloseModal={handleRequestCloseModal} /> : null}
+            <Suspense fallback={<></>}>
+                {modalType === "auth" ? (
+                    <AuthModalContainer
+                        onRequestCloseModal={handleRequestCloseModal}
+                        onUpdateActiveUser={setActiveUser}
+                    />
+                ) : null}
+                {modalType === "post" ? <NewPostModalContainer onRequestCloseModal={handleRequestCloseModal} /> : null}
+            </Suspense>
         </>
     );
 };

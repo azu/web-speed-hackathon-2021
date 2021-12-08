@@ -6,6 +6,7 @@
   "scripts": {
     "analyze": "NODE_ENV=production webpack --mode=production --analyze",
     "prebuild": "rimraf ../dist",
+    "build:dev": "webpack --mode development",
     "build": "NODE_ENV=production webpack --mode production",
     "develop": "cross-env NODE_ENV=development webpack serve"
   },
